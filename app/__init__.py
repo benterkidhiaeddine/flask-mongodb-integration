@@ -1,21 +1,17 @@
-from flask import Flask 
+from flask import Flask
 from settings import Config
+from .api_v1 import api
 from .main import main
-from .extensions import mongo
 
 
-
-def create_app(config_object = Config):
+def create_app(config_object=Config):
     app = Flask(__name__)
-    
-    
+
     app.config.from_object(config_object)
-    print(app.config)
-    mongo.init_app(app)
-    
-    
+
+    # Extension initialization
+    api.init_app(app)
+
     app.register_blueprint(main)
 
     return app
-
-

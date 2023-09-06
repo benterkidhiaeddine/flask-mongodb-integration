@@ -1,13 +1,8 @@
 from flask import Blueprint
-from .extensions import mongo
+
+main: Blueprint = Blueprint("main", __name__)
 
 
-main = Blueprint('main',__name__)
-
-@main.route("/")
+@main.route("/home")
 def home():
-    
-    books_collection = mongo.db.books
-    books_collection.insert_one({"title":"pensées"})
-
-    return "book inserted !"
+    return "<h1>Hello</h1>"
